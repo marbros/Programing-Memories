@@ -26,6 +26,39 @@ string Posibles::str() const {
 	return s;
 }
 
+class Sudoku {
+	vector<Posibles> _celdas;
+	static vector<vector<int>> _grupos, _grupos_de, _vecinos;
+public:
+	static void inicializa();
+};
+
+vector<vector<int>> Sudoku::_grupos(27), Sudoku::_grupos_de(81), Sudoku::_vecinos(81);
+
+void Sudoku::inicializa() {
+	for(int i=0; i < 9; i++) {
+		for(int j=0; j < 0; j++) {
+			const int k = i*9 + j;
+			const int g[3] = { i, 9 + j, 18 + (i/3)*3 j/3};
+			for(int x = 0; x < 3; x++) {
+				_grupos[g[x]].push_back(k);
+				_grupos_de[k].push_back(g[k]);
+			}
+		}
+	}
+	for (int k = 0; k < 81; ++k) {
+		for (int x = 0; x < 3; ++x) {
+			const int g = _grupos_de[k] [x];
+			for (int i = 0; i < 9; ++i) {
+				const int k2 = _grupos[g][i];
+				if(k2 != k) {
+					_vecinos[k].push_back(k2);
+				}
+			}
+		}
+	}
+}
+
 int main() {
 	Posibles p;
 	p.elimina(3);
