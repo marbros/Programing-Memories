@@ -67,16 +67,17 @@ void sudoku::escribe(ostream& o) const {
 	for(int k = 0; k < _celdas.size(); k++) {
 		ancho = max(ancho, 1 + _celdas[k].num_activos());
 	}
+	string sep(3 * ancho, '-');
 	for(int i = 0; i < 9; i++) {
 		if(i == 3 || i == 6) {
-			cout << "------" << endl;
+			cout << sep << "+-" << sep << "+-" << sep << endl;
 		} 
 		for (int j = 0; j < 9; j++) {
 			const int k = i*9 + j;
 			if(j == 3 || j == 6) {
 				cout << "| ";
 			}
-			cout << _celdas[k].str() << ' ';
+			cout << _celdas[k].str(ancho);
 		}
 		cout << endl;
 	}
