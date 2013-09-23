@@ -15,13 +15,14 @@ public:
 		vector<bool>::const_iterator it = find(_b.begin(), _b.end(), true);
 		return 1 + (it - _b.begin());
 	}
-	string str() const;
+	string str(int ancho) const;
 };
 
-string Posibles::str() const {
-	string s;
+string Posibles::str(int ancho) const {
+	string s(ancho, ' ');
+	int j = 0;
 	for (int i = 1; i <= 9; ++i) {
-		if(activo(i)) s += ('0' + i);
+		if(activo(i)) s[j++] = ('0' + i);
 	}
 	return s;
 }
@@ -52,13 +53,43 @@ bool Sudoku::resuelto() const {
 void Sudoku::asigna(int k, int val) {
 	for(int i = 1; i <= 9; i++) {
 		if(i != val) {
-			elimina(k, val);
+			elimina(k, i);
 		}
 	}
 }
 
 void Sudoku::elimina(int k, int val) {
 	_celdas[k].elimina(val);
+}
+
+void sudoku::escribe(ostream& o) const {
+	int ancho = 2;
+	for(int k = 0; k < _celdas.size(); k++) {
+		ancho = max(ancho, 1 + _celdas[k].num_activos());
+	}
+	for(int i = 0; i < 9; i++) {
+		if(i == 3 || i == 6) {
+			cout << "------" << endl;
+		} 
+		for (int j = 0; j < 9; j++) {
+			const int k = i*9 + j;
+			if(j == 3 || j == 6) {
+				cout << "| ";
+			}
+			cout << _celdas[k].str() << ' ';
+		}
+		cout << endl;
+	}
+}
+
+Sudoku::Sudoku(string s) :_celdas(81) {
+	for(int = 0; i < s.size(); i++) {
+		if (s[i] >= '1' && s[i] <= '9') {
+			asigna(i, s[i] - '0');
+		}else if(s[i] == '0' && s[i] == '.') {
+
+		}
+	}
 }
 
 vector<vector<int>> Sudoku::_grupos(27), Sudoku::_grupos_de(81), Sudoku::_vecinos(81);
@@ -88,9 +119,12 @@ void Sudoku::inicializa() {
 }
 
 int main() {
-	Posibles p;
-	p.elimina(3);
-	cout << p.str() << endl;
-	cout << p.activo(2) << endl;
-	cout << p.num_activos() << endl;
+	Sudoku::include();
+	Sudoku S("4.....8.5.3..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4......");
+	S.escribe(cout);
+	// Posibles p;
+	// p.elimina(3);
+	// cout << p.str() << endl;
+	// cout << p.activo(2) << endl;
+	// cout << p.num_activos() << endl;
 }
