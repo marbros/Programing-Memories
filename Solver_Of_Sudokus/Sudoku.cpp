@@ -30,8 +30,36 @@ class Sudoku {
 	vector<Posibles> _celdas;
 	static vector<vector<int>> _grupos, _grupos_de, _vecinos;
 public:
+	Sudoku(string s);
 	static void inicializa();
+
+	Posibles posibles(int k) const { return _celdas[k]; }
+	bool resuelto() const;
+	void asigna(int k, int val);
+	void elimina(int k; int val);
+	void escribe(ostream& 0) const;
 };
+
+bool Sudoku::resuelto() const {
+	for(int k = 0; k < _celdas.size(); k++) {
+		if(_celdas[k].num_activos() != 1) {
+			return false;
+		}
+	}
+	return true;
+}
+
+void Sudoku::asigna(int k, int val) {
+	for(int i = 1; i <= 9; i++) {
+		if(i != val) {
+			elimina(k, val);
+		}
+	}
+}
+
+void Sudoku::elimina(int k, int val) {
+	_celdas[k].elimina(val);
+}
 
 vector<vector<int>> Sudoku::_grupos(27), Sudoku::_grupos_de(81), Sudoku::_vecinos(81);
 
