@@ -37,8 +37,8 @@ public:
 
 	Posibles posibles(int k) const { return _celdas[k]; }
 	bool resuelto() const;
-	void asigna(int k, int val);
-	void elimina(int k, int val);
+	bool asigna(int k, int val);
+	bool elimina(int k, int val);
 	void escribe(ostream& o) const;
 };
 
@@ -54,13 +54,43 @@ bool Sudoku::resuelto() const {
 void Sudoku::asigna(int k, int val) {
 	for(int i = 1; i <= 9; i++) {
 		if(i != val) {
-			elimina(k, i);
+			if(!elimina(k, i)) {
+				return false;
+			}
 		}
 	}
 }
 
 void Sudoku::elimina(int k, int val) {
+	if(!_celdas[k].activo(val)) {
+		return true;
+	}
 	_celdas[k].elimina(val);
+	const int N = _celdas[k].num_activos();
+	if (N==0) {
+		return false;
+	}else if (N == 1) {
+		const int v2 = _celdas[k].val();
+		for(int kp = 0; kp < _vecinos[k].size(); kp++) {
+			if(!elimina(kp, v2)) return false;
+		}
+	}
+	for(int x = 0; x < 3; x++) {
+		const int g = _grupos_de[k][x];
+		int n = 0; k2;
+		for(int i = 0; i < 9; i++) {
+			const int kp = _grupos[g][i];
+			if(_celdas[kp].activo(val)) {
+				n++, k2 = kp;
+			}
+		}
+		if (n == 0) {
+			return false;
+		}else if (n == 1) {
+			if (!asigna(k2, val)) return false;
+		}
+	}
+	return true;
 }
 
 void Sudoku::escribe(ostream& o) const {
