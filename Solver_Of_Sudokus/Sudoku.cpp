@@ -51,7 +51,8 @@ bool Sudoku::resuelto() const {
 	return true;
 }
 
-void Sudoku::asigna(int k, int val) {
+bool Sudoku::asigna(int k, int val) {
+	cout << "asigna(" << k << ',' << val << ")" << endl;
 	for(int i = 1; i <= 9; i++) {
 		if(i != val) {
 			if(!elimina(k, i)) {
@@ -61,7 +62,8 @@ void Sudoku::asigna(int k, int val) {
 	}
 }
 
-void Sudoku::elimina(int k, int val) {
+bool Sudoku::elimina(int k, int val) {
+	cout << "elimina(" << k << ',' << val << ")" << endl;
 	if(!_celdas[k].activo(val)) {
 		return true;
 	}
@@ -118,7 +120,9 @@ Sudoku::Sudoku(string s) :_celdas(81) {
 	int k = 0;
 	for(int i = 0; i < s.size(); i++) {
 		if (s[i] >= '1' && s[i] <= '9') {
-			asigna(i, s[i] - '0');
+			if(!asigna(k, s[i] - '0')) {
+				cout << "Error en el sudoku de entrada";
+			}
 			k++;
 		}else if(s[i] == '0' || s[i] == '.') {
 			k++;
@@ -155,7 +159,10 @@ void Sudoku::inicializa() {
 
 int main() {
 	Sudoku::inicializa();
-	Sudoku S("4.....8.5.3..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4......");
+	string s, linea;
+	while (getline(cin, linea)) s += linea;
+	Sudoku S(s);
+	// Sudoku S("4.....8.5.3..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4......");
 	S.escribe(cout);
 	// Posibles p;
 	// p.elimina(3);
