@@ -73,8 +73,8 @@ bool Sudoku::elimina(int k, int val) {
 		return false;
 	}else if (N == 1) {
 		const int v2 = _celdas[k].val();
-		for(int kp = 0; kp < _vecinos[k].size(); kp++) {
-			if(!elimina(kp, v2)) return false;
+		for(int i = 0; i < _vecinos[k].size(); i++) {
+			if(!elimina(_vecinos[k][i], v2)) return false;
 		}
 	}
 	for(int x = 0; x < 3; x++) {
