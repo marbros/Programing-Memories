@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <iostream>
 #include <vector>
+#include <assert.h>
 
 using namespace std;
 
@@ -29,7 +30,7 @@ string Posibles::str(int ancho) const {
 
 class Sudoku {
 	vector<Posibles> _celdas;
-	static vector<vector<int>> _grupos, _grupos_de, _vecinos;
+	static vector< vector<int> > _grupos, _grupos_de, _vecinos;
 public:
 	Sudoku(string s);
 	static void inicializa();
@@ -37,8 +38,8 @@ public:
 	Posibles posibles(int k) const { return _celdas[k]; }
 	bool resuelto() const;
 	void asigna(int k, int val);
-	void elimina(int k; int val);
-	void escribe(ostream& 0) const;
+	void elimina(int k, int val);
+	void escribe(ostream& o) const;
 };
 
 bool Sudoku::resuelto() const {
@@ -62,7 +63,7 @@ void Sudoku::elimina(int k, int val) {
 	_celdas[k].elimina(val);
 }
 
-void sudoku::escribe(ostream& o) const {
+void Sudoku::escribe(ostream& o) const {
 	int ancho = 2;
 	for(int k = 0; k < _celdas.size(); k++) {
 		ancho = max(ancho, 1 + _celdas[k].num_activos());
@@ -84,22 +85,25 @@ void sudoku::escribe(ostream& o) const {
 }
 
 Sudoku::Sudoku(string s) :_celdas(81) {
-	for(int = 0; i < s.size(); i++) {
+	int k = 0;
+	for(int i = 0; i < s.size(); i++) {
 		if (s[i] >= '1' && s[i] <= '9') {
 			asigna(i, s[i] - '0');
-		}else if(s[i] == '0' && s[i] == '.') {
-
+			k++;
+		}else if(s[i] == '0' || s[i] == '.') {
+			k++;
 		}
 	}
+	assert(k == 81);
 }
 
-vector<vector<int>> Sudoku::_grupos(27), Sudoku::_grupos_de(81), Sudoku::_vecinos(81);
+vector< vector<int> > Sudoku::_grupos(27), Sudoku::_grupos_de(81), Sudoku::_vecinos(81);
 
 void Sudoku::inicializa() {
 	for(int i=0; i < 9; i++) {
 		for(int j=0; j < 0; j++) {
 			const int k = i*9 + j;
-			const int g[3] = { i, 9 + j, 18 + (i/3)*3 j/3};
+			const int g[3] = { i, 9 + j, 18 + (i/3)*3 + j/3};
 			for(int x = 0; x < 3; x++) {
 				_grupos[g[x]].push_back(k);
 				_grupos_de[k].push_back(g[k]);
@@ -120,7 +124,7 @@ void Sudoku::inicializa() {
 }
 
 int main() {
-	Sudoku::include();
+	Sudoku::inicializa();
 	Sudoku S("4.....8.5.3..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4......");
 	S.escribe(cout);
 	// Posibles p;
