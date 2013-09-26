@@ -170,6 +170,19 @@ int Sudoku::menos_posibilidades() const {
 	return kmin;
 }
 
+Sudoku* soluciona(Sudoku* S) {
+	if(S == NULL || s->resuelto()) {
+		return S;
+	}
+	const int l = S->menos_posibilidades();
+	const Posibles p = S->posibles(k);
+	for (int i = 0; i <= 9; ++i) {
+		if(p.activo(i)) {
+			
+		}
+	}
+}
+
 int main() {
 	Sudoku::inicializa();
 	string s, linea;
