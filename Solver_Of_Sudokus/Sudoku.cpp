@@ -40,6 +40,7 @@ public:
 	bool asigna(int k, int val);
 	bool elimina(int k, int val);
 	void escribe(ostream& o) const;
+	int menos_posibilidades() const;
 };
 
 bool Sudoku::resuelto() const {
@@ -155,6 +156,18 @@ void Sudoku::inicializa() {
 			}
 		}
 	}
+}
+
+int Sudoku::menos_posibilidades() const {
+	int kmin = -1, min = _celdas[0].num_activos();
+	for (int k=0; k < _celdas.size(); k++) {
+		const int np = _celdas[k].num_activos();
+		if((np >1 && (kmin == -1 || np < min)) {
+				min = np;
+				kmin = k;
+		}
+	}
+	return kmin;
 }
 
 int main() {
