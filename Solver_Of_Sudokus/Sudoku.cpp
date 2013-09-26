@@ -80,7 +80,7 @@ bool Sudoku::elimina(int k, int val) {
 	}
 	for(int x = 0; x < 3; x++) {
 		const int g = _grupos_de[k][x];
-		int n = 0; k2;
+		int n = 0, k2;
 		for(int i = 0; i < 9; i++) {
 			const int kp = _grupos[g][i];
 			if(_celdas[kp].activo(val)) {
@@ -159,10 +159,10 @@ void Sudoku::inicializa() {
 }
 
 int Sudoku::menos_posibilidades() const {
-	int kmin = -1, min = _celdas[0].num_activos();
+	int kmin = -1, min;
 	for (int k=0; k < _celdas.size(); k++) {
 		const int np = _celdas[k].num_activos();
-		if((np >1 && (kmin == -1 || np < min)) {
+		if(np >1 && (kmin == -1 || np < min)) {
 				min = np;
 				kmin = k;
 		}
@@ -171,25 +171,37 @@ int Sudoku::menos_posibilidades() const {
 }
 
 Sudoku* soluciona(Sudoku* S) {
-	if(S == NULL || s->resuelto()) {
+	if(S == NULL || S->resuelto()) {
 		return S;
 	}
-	const int l = S->menos_posibilidades();
+	const int k = S->menos_posibilidades();
 	const Posibles p = S->posibles(k);
 	for (int i = 0; i <= 9; ++i) {
 		if(p.activo(i)) {
-			
+			Sudoku *S1 = new Sudoku(*S);
+			if(S1->asigna(k,i)) {
+				Sudoku *S2 = soluciona(S1);
+				if(S2 != NULL) {
+					if(S2 != S1) delete S1;
+					return S2;
+				}
+			}
+			delete S1;
 		}
 	}
+	return NULL;
 }
 
 int main() {
 	Sudoku::inicializa();
 	string s, linea;
-	while (getline(cin, linea)) s += linea;
-	Sudoku S(s);
+	while (getline(cin, linea)) {
+		Sudoku *S = soluciona(new Sudoku(s));
+		S->escribe(cout);
+		delete S;
+	} 
+	//s += linea;
 	// Sudoku S("4.....8.5.3..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4......");
-	S.escribe(cout);
 	// Posibles p;
 	// p.elimina(3);
 	// cout << p.str() << endl;
