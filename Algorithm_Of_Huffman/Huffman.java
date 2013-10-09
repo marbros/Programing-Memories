@@ -47,7 +47,31 @@ public class Huffman {
 		//posOrden((Nodo)cola.poll());	
 	}
 
+    /**
+     *  Esta función retorna un cola de prioridades ordenada por   
+     *  frecuencia de cada caracter en el mapa.
+     *
+     *  @param map    Es el mapa de caracteres asociado con su frecuencia.
+     *  @param arbol  Es una instancia de la clase Arbol
+     *  @Retun cola
+     */
+    private static PriorityQueue col_priority(TreeMap map, Arbol arbol) {
+        PriorityQueue<Nodo> cola = new PriorityQueue<Nodo>();   
+        Nodo node = null;       
+        for (Object key : map.keySet()) {
+            int value = (int) map.get(key);
+            cola.add(node = new Nodo((String)key,value));
+            //equivalente a
+            //cola.add(arbol.insertarNodo((String)key,value,node));
+        }       
+        System.out.println(cola.toString());
+        // while(!cola.isEmpty()){
+        //     System.out.println(cola.poll());
+        // }
 
+        return cola;
+    }
+    
 	/**
 	 *  Este método realiza la tarea de contenedor de cada funcíon y  
 	 *  método del programa y los ejecuta en un orden establecido.
