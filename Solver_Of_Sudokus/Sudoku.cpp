@@ -198,6 +198,7 @@ int main() {
 	while (getline(cin, linea)) {
 		Sudoku *S = soluciona(new Sudoku(s));
 		S->escribe(cout);
+		cout << endl << endl;
 		delete S;
 	} 
 	//s += linea;
