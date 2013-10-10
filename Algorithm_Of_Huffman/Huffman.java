@@ -47,6 +47,17 @@ public class Huffman {
 		//posOrden((Nodo)cola.poll());	
 	}
 
+	/**
+	 *  Este método imprime las claves asociadas a cada hoja del arbol.
+	 */
+	public static void printKeys() {	
+		String keys = k.replace(",", "\n");
+		//String [] keys = k.split(",");
+
+		//Imprime Keys
+		System.out.println("-Keys- \n" + keys);
+	}	
+
     /**
      *  Esta función retorna un cola de prioridades ordenada por   
      *  frecuencia de cada caracter en el mapa.
