@@ -48,6 +48,20 @@ public class Huffman {
 	}
 
 	/**
+	 *  Este método realiza un recorrido a medias, en Pos Orden de un arbol,
+	 *  con el fin de asociar un valor binario a cada arco de este.
+	 *
+	 *  @param arbol  Es una instancia de la clase Nodo.
+	 */
+    public static void getKeys(Nodo arbol) {
+    	if(arbol != null) {
+    		order(arbol.getHijoIzq(), "0");
+            order(arbol.getHijoDer(), "1");   		
+    	}
+
+    }	
+
+	/**
 	 *  Este método imprime las claves asociadas a cada hoja del arbol.
 	 */
 	public static void printKeys() {	
