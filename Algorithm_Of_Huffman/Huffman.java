@@ -48,6 +48,24 @@ public class Huffman {
 	}
 
 	/**
+	 *  Este método realiza un recorrido en orden de un arbol  
+	 *
+	 *  @param arbol  Es una instancia de la clase Nodo.
+	 *	@param key    Es el binario 0 ó 1 asociado a cada arco del arbol
+	 */
+    public static void order(Nodo arbol, String key){
+    	keys += key;
+        if (arbol != null){
+            order(arbol.getHijoIzq(), "0");
+            if(!(arbol.getkey().equals("")))
+            	k += (arbol.getkey() + " : " + keys + ",");
+            //System.out.println(arbol.getkey() + " key " + k);
+            order(arbol.getHijoDer(), "1");
+        }
+        keys = keys.substring(0,keys.length()-1);
+    }	
+
+	/**
 	 *  Este método realiza un recorrido a medias, en Pos Orden de un arbol,
 	 *  con el fin de asociar un valor binario a cada arco de este.
 	 *
