@@ -26,6 +26,16 @@ public class Huffman {
                 System.out.println("---Fin---");
     }	
 
+    public static void posOrden(Nodo arbol){
+        if (arbol != null){
+        	System.out.println("Nodo izq P");
+            enOrden(arbol.getHijoIzq());
+            System.out.println("Nodo der P");
+            enOrden(arbol.getHijoDer());
+            System.out.println("Valor en el nodo: "+arbol.getValue());
+        }
+    }
+    
 	/**
 	 *  Este método se encarga de retirar cada par de elementos de menor
 	 *  frecuencia en la cola, y sumar su peso con el fin de crear 
