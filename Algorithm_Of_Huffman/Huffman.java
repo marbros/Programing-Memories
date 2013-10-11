@@ -15,6 +15,17 @@ public class Huffman {
 	static String keys = "";
 	static String k = "";
 
+    public static void enOrden(Nodo arbol){
+        if (arbol != null){
+        	System.out.println("Nodo izq");
+            enOrden(arbol.getHijoIzq());
+            System.out.println("key " + arbol.getkey() + " valor " + arbol.getValue());
+            System.out.println("Nodo Der");
+            enOrden(arbol.getHijoDer());
+        }
+                System.out.println("---Fin---");
+    }	
+
 	/**
 	 *  Este método se encarga de retirar cada par de elementos de menor
 	 *  frecuencia en la cola, y sumar su peso con el fin de crear 
