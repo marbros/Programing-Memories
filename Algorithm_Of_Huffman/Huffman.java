@@ -88,7 +88,32 @@ public class Huffman {
 
 		//Imprime Keys
 		System.out.println("-Keys- \n" + keys);
-	}	
+	}
+
+	/**
+	 *  Este método realiza un reemplazo de cada caracter del texto
+	 *  por su respectiva key asignada al arbol; luego imprime el nuevo
+	 *  texto resultante del anterior proceso. 
+	 *
+	 *	@param T  Texto
+	 */
+	public static void prinTextCompress(String T) {
+		char[] keys = T.toCharArray();
+		//maar
+		//m 00,r 01,a 1,
+		//String key = new String(k);
+		char comp = k.charAt(0);
+		String keyComplete = "";
+		for(int i = 0; i <= keys.length-1; i++) {
+			comp = keys[i]; 
+			if(keys[i] == comp) {
+				keyComplete += k.substring((k.indexOf(comp)+4), k.indexOf(",",k.indexOf(comp)));
+			}
+		}
+
+		//Imprime Texto Comprimido
+		System.out.println("Texto Comprimido: " + keyComplete);
+	}		
 
     /**
      *  Esta función retorna un cola de prioridades ordenada por   
