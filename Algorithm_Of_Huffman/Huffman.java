@@ -223,11 +223,29 @@ public class Huffman {
 	 *  @param T      Es el Texto
 	 *  @Retun arbol  Es una instancia de la clase Arbol.
 	 */
-	private static void huffman (String T, Arbol arbol) {
-		createTree(col_priority(cont_Letters(T),arbol),arbol);
-		printKeys();
-		prinTextCompress(T);
-		printTextDescompress(T);
+	public static void huffman (String T, String K, Arbol arbol, 
+                huffmanGui UI, String action) {
+            if(action.equals("Compress")) {
+		createTree(col_priority(cont_Letters(T,"letters"),arbol),arbol
+                        ,UI);
+                printKeys(UI);
+                String textCompress = prinTextCompress(T);
+		System.out.println("Texto Comprimido: " + textCompress);
+                
+                printText("Comprimido",textCompress,UI);
+                
+                String textDesCompress = printTextDescompress(T);
+		System.out.println("Texto Sin Comprimir: " +
+                printTextDescompress(T));
+                
+                printText("Sin Comprimir",textDesCompress,UI);
+                
+            }else {
+                //String comprenssion = printTextDescompress(t.read("comprimido."
+                //+ "txt","textC"),t.read("claves.txt","keys"), UI);
+                String comprenssion = printTextDescompress(T,K,UI);
+                System.out.println("Texto DesCifrado:   " + comprenssion);
+            }  
 	}
 
 	/**
