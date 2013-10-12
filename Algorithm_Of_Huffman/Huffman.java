@@ -136,6 +136,26 @@ public class Huffman {
 		System.out.println("Texto Comprimido: " + keyComplete);
 	}		
 
+	/**
+	 *  Este método convierte cada caracter del texto a un binario, luego
+	 *  imprime el nuevo texto resultante del anterior proceso.
+	 *
+	 *	@param T  Texto
+	 */
+	public static void printTextDescompress(String T) {
+		char[] keys = T.toCharArray();
+
+		String keyBinary[] = new String[T.length()];
+		String keyBin = "";
+		for (int i = 0; i <= keys.length-1; ++i) {
+			keyBinary[i] = String.format("%s", Integer.toBinaryString(keys[i]));
+			keyBin += keyBinary[i] + " ";
+			//System.out.println("Binario: " + keyBin);
+		}
+		//Imprime Texto Comprimido
+		System.out.println("Texto Sin Comprimir: " + keyBin);		
+	}
+
     /**
      *  Esta función retorna un cola de prioridades ordenada por   
      *  frecuencia de cada caracter en el mapa.
