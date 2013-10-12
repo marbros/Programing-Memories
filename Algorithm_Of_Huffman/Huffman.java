@@ -103,12 +103,19 @@ public class Huffman {
 	/**
 	 *  Este método imprime las claves asociadas a cada hoja del arbol.
 	 */
-	public static void printKeys() {	
-		String keys = k.replace(",", "\n");
-		//String [] keys = k.split(",");
-
-		//Imprime Keys
-		System.out.println("-Keys- \n" + keys);
+	public static void printKeys(huffmanGui UI) {	
+		String Keys;
+                if(k.contains("\n")) {
+                    Keys = k.replace("\n","º");
+                    Keys = Keys.replace(Separator, "\n");
+                    //keys = (k.indexOf("\n")-1);
+                }else {
+                    Keys = k.replace(Separator, "\n"); 
+                }
+                
+                UI.txaKeys.setText("-Keys- \n" + Keys);
+		System.out.println("-Keys- \n" + Keys);
+                t.write("claves.txt", Keys);
 	}
 
 	/**
