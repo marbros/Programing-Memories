@@ -192,29 +192,35 @@ public class Huffman {
 	 *  Esta función retorna un map <k,v> con cada caracter  
 	 *  y el número de veces con que este se repite en un texto.
 	 *
-	 *  @param T    Es el Texto
+	 *  @param T     Es el Texto
+         *  @param type  Es el identificador de la función de llamado
 	 *  @Retun map
 	 */
-	private static TreeMap cont_Letters(String T) {
-		String[] letters = T.split("");
+	private static TreeMap cont_Letters(String T, String type) {
+        String[] letters;
+        if(type.equals("letters")) {
+            letters = T.split("");
+        }else{
+            letters = T.split(" ");                    
+        }
 		int len = letters.length;
-		TreeMap <String, Integer> map = new TreeMap <String, Integer>();
+		TreeMap <String, Integer> map = new TreeMap <>();
 
 		for (int i=0; i < len; ++i) {
-			String key = letters[i];
-			if (letters[i].length() > 0) {
-				if(map.get(key) == null) {
-					map.put(key, 1);
-				}else {
-					int value = map.get(key).intValue();
-					value++;
-					map.put(key,value);
-				}
-			}
+                    String key = letters[i];
+                    if (letters[i].length() > 0) {
+                        if(map.get(key) == null) {
+                            map.put(key, 1);
+                        }else {
+                            int value = map.get(key).intValue();
+                            value++;
+                            map.put(key,value);
+                        }
+                    }
 		}
 		
 		return map;	
-	}    
+	}  
     
 	/**
 	 *  Este método realiza la tarea de contenedor de cada funcíon y  
