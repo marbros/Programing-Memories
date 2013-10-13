@@ -36,7 +36,7 @@ public class Huffman {
         }
     }
     
-	/**
+    /**
 	 *  Este método se encarga de retirar cada par de elementos de menor
 	 *  frecuencia en la cola, y sumar su peso con el fin de crear 
 	 *  pequeños subArboles, que seran nuevamente agregados a la cola
@@ -46,26 +46,27 @@ public class Huffman {
 	 *				  cada caracter en el mapa.	 
 	 *  @param arbol  Es una instancia de la clase Arbol.
 	 */
-	private static void createTree(PriorityQueue cola, Arbol arbol) {
+	private static void createTree(PriorityQueue cola, Arbol arbol, 
+                huffmanGui UI) {
 
-		Nodo father = null;
-		while(cola.size() > 1) {  
-        	Nodo one = (Nodo) cola.poll();
-        	//System.out.println(one);
-        	Nodo two = (Nodo) cola.poll();
-        	//System.out.println(two);
-        	Integer onePlusTwo = one.getValue() + two.getValue(); 
-        	father = arbol.insertarNodo(onePlusTwo,one,two,father);
-        	cola.add(father);    	
-		}
-		/*while(!cola.isEmpty()) {
-			System.out.println(cola.poll());
-		}
-		*/
-		getKeys((Nodo)cola.poll());
+            Nodo father = null; 
+            Nodo oneAux;
 
-		//Imprimir Arbol
-		//posOrden((Nodo)cola.poll());	
+            if(cola.size() == 1) {
+                oneAux = (Nodo) cola.poll();
+                Integer oneOnly = oneAux.getValue();
+                father = Arbol.insertarNodo(oneOnly, oneAux, father);
+                cola.add(father);
+            }
+            while(cola.size() > 1) {  
+                Nodo one = (Nodo) cola.poll();
+                Nodo two = (Nodo) cola.poll();               
+                Integer onePlusTwo = one.getValue() + two.getValue(); 
+                father = Arbol.insertarNodo(onePlusTwo,one,two,father);
+                cola.add(father);    	
+            }
+            tree = (Nodo)cola.peek();
+            getKeys((Nodo)cola.poll());
 	}
 
 	/**
