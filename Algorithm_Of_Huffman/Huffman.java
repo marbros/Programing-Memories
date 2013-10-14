@@ -75,17 +75,16 @@ public class Huffman {
 	 *  @param arbol  Es una instancia de la clase Nodo.
 	 *	@param key    Es el binario 0 ó 1 asociado a cada arco del arbol
 	 */
-    public static void order(Nodo arbol, String key){
-    	keys += key;
-        if (arbol != null){
-            order(arbol.getHijoIzq(), "0");
-            if(!(arbol.getkey().equals("")))
-            	k += (arbol.getkey() + " : " + keys + ",");
-            //System.out.println(arbol.getkey() + " key " + k);
-            order(arbol.getHijoDer(), "1");
-        }
-        keys = keys.substring(0,keys.length()-1);
-    }	
+        public static void order(Nodo arbol, String key){
+            keys += key;
+            if (arbol != null){
+                order(arbol.getHijoIzq(), "0");
+                if(!(arbol.getkey().equals("")))
+                    k += (arbol.getkey() + " : " + keys + Separator);
+                order(arbol.getHijoDer(), "1");
+            }
+            keys = keys.substring(0,keys.length()-1);
+        }	
 
 	/**
 	 *  Este método realiza un recorrido a medias, en Pos Orden de un arbol,
@@ -120,28 +119,28 @@ public class Huffman {
 	}
 
 	/**
-	 *  Este método realiza un reemplazo de cada caracter del texto
+	 *  Esta función realiza un reemplazo de cada caracter del texto
 	 *  por su respectiva key asignada al arbol; luego imprime el nuevo
 	 *  texto resultante del anterior proceso. 
 	 *
 	 *	@param T  Texto
 	 */
-	public static void prinTextCompress(String T) {
-		char[] keys = T.toCharArray();
-		//maar
-		//m 00,r 01,a 1,
-		//String key = new String(k);
-		char comp = k.charAt(0);
+	public static String prinTextCompress(String T) {
+		char[] Keys;
+                Keys = T.toCharArray();
+		char comp;
 		String keyComplete = "";
-		for(int i = 0; i <= keys.length-1; i++) {
-			comp = keys[i]; 
-			if(keys[i] == comp) {
-				keyComplete += k.substring((k.indexOf(comp)+4), k.indexOf(",",k.indexOf(comp)));
+                String _k = k.replaceAll(" : ","");
+		for(int i = 0; i <= Keys.length-1; i++) {
+			comp = Keys[i]; 
+			if(Keys[i] == comp) {
+                            int x = _k.indexOf(comp)+1;
+                            keyComplete += _k.substring(_k.indexOf(comp)+1,
+                                    _k.indexOf(Separator,_k.indexOf(comp)));
 			}
 		}
-
-		//Imprime Texto Comprimido
-		System.out.println("Texto Comprimido: " + keyComplete);
+                t.write("comprimido.txt", keyComplete);
+                return keyComplete;
 	}		
 
 	/**
