@@ -12,8 +12,13 @@ import java.util.PriorityQueue;
 
 public class Huffman {
 
-	static String keys = "";
-	static String k = "";
+    static Nodo treeD;
+    static Nodo tree;
+    private static String keys = "";
+    private static String k = "";
+    private static Text t = new Text();
+    private static String keyC = "";
+    private static String Separator = "~";
 
     public static void enOrden(Nodo arbol){
         if (arbol != null){
@@ -144,24 +149,33 @@ public class Huffman {
 	}		
 
 	/**
-	 *  Este método convierte cada caracter del texto a un binario, luego
-	 *  imprime el nuevo texto resultante del anterior proceso.
+         *  Este método crea el arbol de codificación huffman por medio de
+         *  métodos de apoyo, reemplazando cada caracter del texto a un binario,
+         *  después retorna el nuevo texto resultante del anterior proceso.
 	 *
-	 *	@param T  Texto
+	 *	@param TC  Texto Comprimido
+         *      @param key Claves Del Texto
 	 */
-	public static void printTextDescompress(String T) {
-		char[] keys = T.toCharArray();
-
-		String keyBinary[] = new String[T.length()];
-		String keyBin = "";
-		for (int i = 0; i <= keys.length-1; ++i) {
-			keyBinary[i] = String.format("%s", Integer.toBinaryString(keys[i]));
-			keyBin += keyBinary[i] + " ";
-			//System.out.println("Binario: " + keyBin);
-		}
-		//Imprime Texto Comprimido
-		System.out.println("Texto Sin Comprimir: " + keyBin);		
-	}
+	public static String printTextDescompress(String TC, String key,
+                huffmanGui UI) {
+            Nodo root = new Nodo("",0);
+            key = key.replace(" : ", "");
+            String [] Keys;
+            Keys = key.split(Separator);
+            
+            String [] code;
+            code = TC.split("");
+            
+            for(int i = 0; i <= Keys.length-1; ++i) {
+                root = treeStruct(root,Keys[i]);
+            }
+            for(int i = 1; i < code.length-1; ++i) {
+                i = frecuence(root,code,0,i)-1;               
+            }
+            treeD = root;
+            UI.txaText.setText(keyC);
+            return keyC;
+        } 
 
 	/**
 	 *  Este método es una extencion de treeStruct que realiza el
