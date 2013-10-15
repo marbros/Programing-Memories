@@ -149,12 +149,12 @@ public class Huffman {
 	}		
 
 	/**
-         *  Este método crea el arbol de codificación huffman por medio de
-         *  métodos de apoyo, reemplazando cada caracter del texto a un binario,
-         *  después retorna el nuevo texto resultante del anterior proceso.
+     *  Este método crea el arbol de codificación huffman por medio de
+     *  métodos de apoyo, reemplazando cada caracter del texto a un binario,
+     *  después retorna el nuevo texto resultante del anterior proceso.
 	 *
 	 *	@param TC  Texto Comprimido
-         *      @param key Claves Del Texto
+     *  @param key Claves Del Texto
 	 */
 	public static String printTextDescompress(String TC, String key,
                 huffmanGui UI) {
@@ -256,7 +256,19 @@ public class Huffman {
 		}
 		
 		return map;	
-	}	
+	}
+
+        public static void printText(String type, String Text, huffmanGui UI) {
+            if(Text.length() > 47) {
+                UI.txaText.setText(UI.txaText.getText() + "\n" + "Texto " + type + ": " + Text + "\n");
+            }else {
+                if(type.equals("Comprimido")) {
+                    UI.lblcTextCompress.setText(Text);
+                }else {
+                    UI.lblcTextDesCompress.setText(Text);
+                }
+            }            
+        }    	
     
 	/**
 	 *  Este método realiza la tarea de contenedor de cada funcíon y  
@@ -301,6 +313,6 @@ public class Huffman {
 		text = Read.nextLine();
 		System.out.print("\n");
 		String k = "";
-		huffman(text,arbol);		
+		//huffman(text,arbol);		
 	}
 }
