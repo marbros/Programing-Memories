@@ -175,7 +175,43 @@ public class Huffman {
             treeD = root;
             UI.txaText.setText(keyC);
             return keyC;
-        } 
+        }
+
+    /**
+     *  Este método crea la estructura del arbol de huffman a partir de
+     *  unas keys dadas.
+     *
+     *  @param root   Nodo raiz
+     *  @param key    keys del texto comprimido
+     */
+        public static Nodo treeStruct(Nodo root, String key){            
+            char [] charac;
+            charac = key.toCharArray();
+            Nodo aux,node;
+            node = new Nodo("",0);
+            int pos;
+            if(charac.length > 1){
+                pos = 2;
+            }else{
+                pos=1;              
+            }
+            if(charac[1]=='0'){
+                if(root.getHijoIzq() != null){
+                    root.setvalue(root.getValue());
+                }else {
+                    root.setHijoIzq(node); 
+                }
+                orderT(root.getHijoIzq(),charac,pos,charac.length-1);                        
+            }else {
+                if(root.getHijoDer()!= null){
+                    root.setvalue(root.getValue());
+                }else {                
+                    root.setHijoDer(node);
+                }
+                orderT(root.getHijoDer(),charac,pos,charac.length-1);                        
+            }
+            return root;
+        }        
 
 	/**
 	 *  Este método es una extencion de treeStruct que realiza el
