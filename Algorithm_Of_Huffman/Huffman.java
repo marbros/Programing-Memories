@@ -146,7 +146,27 @@ public class Huffman {
 		}
                 t.write("comprimido.txt", keyComplete);
                 return keyComplete;
-	}		
+	}
+
+    /**
+     *  Esta Función convierte cada caracter del texto a un binario, luego
+     *  imprime el nuevo texto resultante del anterior proceso.
+     *
+     *  @param T  Texto
+     */
+    public static String printTextDescompress(String T) {
+        char[] Keys;
+                Keys = T.toCharArray();
+
+        String keyBinary[] = new String[T.length()];
+        String keyBin = "";
+        for (int i = 0; i <= Keys.length-1; ++i) {
+            keyBinary[i] = String.format("%s", 
+                                Integer.toBinaryString(Keys[i]));
+            keyBin += keyBinary[i] + " ";
+        }
+                return keyBin;
+    }    		
 
 	/**
      *  Este método crea el arbol de codificación huffman por medio de
