@@ -198,6 +198,35 @@ public class Huffman {
         }
 
     /**
+     *  Este método es una extencion de treeStruct que realiza el
+     *  recorrido de un arbol hasta llegar asus hojas.
+     *
+     *  @param root   Nodo del arbol actual
+         *      @param key[]  keys del texto comprimido
+         *      @param pos    Posición del char actual
+         *      @param len    Tamaño del arreglo key[]
+     */        
+        public static void orderT(Nodo root, char[] key, int pos, int len) {
+            if(pos <= len && len != 1) {
+                Nodo node = new Nodo("",0);
+                if(key[pos] == '0') {
+                    if(root.getHijoIzq() == null){
+                        root.setHijoIzq(node);
+                    }
+                    orderT(root.getHijoIzq(),key,pos+1,len);
+                }else {
+                    if(root.getHijoDer() == null){
+                        root.setHijoDer(node);                
+                    }
+                    orderT(root.getHijoDer(),key,pos+1,len);
+                }
+            }
+            if(root.getHijoIzq() == null && root.getHijoDer() == null){
+                root.setkey(Character.toString(key[0]));                
+            }
+        }        
+
+    /**
      *  Este método crea la estructura del arbol de huffman a partir de
      *  unas keys dadas.
      *
