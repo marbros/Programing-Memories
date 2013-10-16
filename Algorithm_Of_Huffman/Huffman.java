@@ -197,34 +197,37 @@ public class Huffman {
             return keyC;
         }
 
-    /**
-     *  Este método es una extencion de treeStruct que realiza el
-     *  recorrido de un arbol hasta llegar asus hojas.
+        /**
+     *  Este método completa la estructura del arbol de huffman sumando
+         *  las frecuencias de cada valor encontrado del texto cifrado.
      *
-     *  @param root   Nodo del arbol actual
-         *      @param key[]  keys del texto comprimido
-         *      @param pos    Posición del char actual
-         *      @param len    Tamaño del arreglo key[]
+     *  @param root   Nodo actual del Árbol
+         *      @param bi[]   Texto Cifrado
+         *      @param posi   Posición inicial
+         *      @param posf   Posición Final
      */        
-        public static void orderT(Nodo root, char[] key, int pos, int len) {
-            if(pos <= len && len != 1) {
-                Nodo node = new Nodo("",0);
-                if(key[pos] == '0') {
-                    if(root.getHijoIzq() == null){
-                        root.setHijoIzq(node);
-                    }
-                    orderT(root.getHijoIzq(),key,pos+1,len);
-                }else {
-                    if(root.getHijoDer() == null){
-                        root.setHijoDer(node);                
-                    }
-                    orderT(root.getHijoDer(),key,pos+1,len);
+        public static int frecuence(Nodo root, String [] bi, int posi, int posf)
+        {
+            if(root.getHijoIzq() != null || root.getHijoDer() != null){
+                root.setvalue(root.getValue()+1);
+                switch (bi[posf]) {
+                    case "0":
+                        posf = frecuence(root.getHijoIzq(),bi,posi,posf+1);
+                        break;
+                    
+                    case "1":
+                        posf= frecuence(root.getHijoDer(),bi,posi,posf+1);
+                        break;
                 }
+            }else {
+                root.setvalue(root.getValue()+1);
             }
-            if(root.getHijoIzq() == null && root.getHijoDer() == null){
-                root.setkey(Character.toString(key[0]));                
+            if(root.getkey().equals("º")) {
+                root.setkey("\n");
             }
-        }        
+            keyC += root.getkey();
+            return posf;
+        }         
 
     /**
      *  Este método crea la estructura del arbol de huffman a partir de
