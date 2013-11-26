@@ -12,9 +12,15 @@ int main() {
 	}
 	for (int i = 2; i < N; ++i) {
 		/* Multiples of i: i*2, i*3, i*4, i*5 ... */
-		for (int j = 2; i * j < N; ++j) {
-			prime[i*j] = false;
+		if(prime[i]) {
+			for (int j = 2; i * j < N; ++j) {
+				prime[i*j] = false;
+			}
 		}
 	}
+	for (int i = 2; i < N; ++i) {
+		if(prime[i]) cout << i << ' ';
+	}
+	cout << endl;
 	return 0;
 }
