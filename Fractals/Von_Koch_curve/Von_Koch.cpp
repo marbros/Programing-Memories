@@ -26,13 +26,21 @@ Punto intermedio(const Punto& a, const Punto& b, float t) {
 }
 
 void Vonkoch(const Punto& p0, const Punto& p4, int nivel) {
-	Punto p[5] = { p0, p0, p0, p0, p4};
-	p[1] = intermedio(p[0], p[4], 1.0/3.0);
-	p[3] = intermedio(p[0], p[4], 2.0/3.0);
-	p[2] = rotar(p[3], p[1]. M_PI / 3.0);
-	for (int i = 0; i < 4; ++i)
-	{
-		linea(p[i].x, p[i].y, p[i+1].x, p[i+1].y);
+	if(nivel <= 0) {
+		linea(p0.x, p0.y, p4.x, p4.y);
+	} else {
+		Punto p[5] = { p0, p0, p0, p0, p4};
+		p[1] = intermedio(p[0], p[4], 1.0/3.0);
+		p[3] = intermedio(p[0], p[4], 2.0/3.0);
+		p[2] = rotar(p[3], p[1]. M_PI / 3.0);
+		for (int i = 0; i < 4; ++i)
+		{
+			if (nivel <= 1) {
+				linea(p[i].x, p[i].y, p[i+1].x, p[i+1].y);
+			} else {
+				Vonkoch(p[i], p[i+1], nivel - 1);
+			}
+		}
 	}
 }
 
