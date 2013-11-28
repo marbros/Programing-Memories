@@ -48,7 +48,13 @@ int main()
 {
 	vredimensiona(1260,440);
 	Punto p0 = { 1240, 420}, p4 = { 1220. 420 };
-	Vonkoch(p0, p4, 1);
-	refresca();
+	for (int i = 0; i < 33; ++i)
+	{
+		borra();
+		Vonkoch(p0, p4, i);
+		refresca();
+		espera(3000);
+	}
+	vcierra();
 	return 0;
 }
