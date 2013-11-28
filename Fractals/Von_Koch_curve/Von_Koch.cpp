@@ -16,13 +16,13 @@ Punto rotar(const Punto& p, const Punto& cen, float da) {
 	float dx = p.x - cen.x, dy = p.y - cen.y;
 	float r = sqrt(dx*dx + dy*dy);
 	float a = atan2(dy, dx);
-	a += da;
+	a -= da;
 	Punto q = { cen.x + r * cos(a + da), cen.y + r * sin(a) };
 	return q;
 }
 
-void intermedio(const Punto& a, const Punto& b, float t) {
-	Punto p = { a.x * (1-t) + b.x * t, a.y * (1-t) + b.y };
+Punto intermedio(const Punto& a, const Punto& b, float t) {
+	Punto p = { a.x * (1-t) + b.x * t, a.y * (1-t) + b.y * t};
 }
 
 void Vonkoch(const Punto& p0, const Punto& p4, int nivel) {
@@ -30,5 +30,17 @@ void Vonkoch(const Punto& p0, const Punto& p4, int nivel) {
 	p[1] = intermedio(p[0], p[4], 1.0/3.0);
 	p[3] = intermedio(p[0], p[4], 2.0/3.0);
 	p[2] = rotar(p[3], p[1]. M_PI / 3.0);
+	for (int i = 0; i < 4; ++i)
+	{
+		linea(p[i].x, p[i].y, p[i+1].x, p[i+1].y);
+	}
 }
 
+int main()
+{
+	vredimensiona(1260,440);
+	Punto p0 = { 1240, 420}, p4 = { 1220. 420 };
+	Vonkoch(p0, p4, 1);
+	refresca();
+	return 0;
+}
