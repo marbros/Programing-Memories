@@ -25,9 +25,27 @@ void leer_numero(Numero& N) {
 	N.ncifras = tam;
 }
 
+int max(int a, int b) {
+	int res = a;
+	if (res < b) res = b;
+	return res;
+}
+
+void suma(const Numero&A, const Numero& B, Numero& R) {
+	int me_llevo = 0, ncifras = max(A.ncifras, B.ncifras);
+	for (int i = 0; i < ncifras; ++i) {
+		int suma = A.cifras[i] + B.cifras[i] + me_llevo;
+		R.cifras[i] = suma % 10;
+		me_llevo = suma / 10;
+	}
+	R.ncifras = ncifras + me_llevo;
+}
+
 int main() {
-	Numero N;
-	leer_numero(N);
-	escribir_numero(N);
+	Numero A, B, R;
+	leer_numero(A);
+	leer_numero(B);	
+	suma(A, B, R);
+	escribir_numero(R);
 	cout << endl;
 }
