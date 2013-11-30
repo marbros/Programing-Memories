@@ -34,11 +34,31 @@ int max(int a, int b) {
 void suma(const Numero&A, const Numero& B, Numero& R) {
 	int me_llevo = 0, ncifras = max(A.ncifras, B.ncifras);
 	for (int i = 0; i < ncifras; ++i) {
+		int cifra_A = cifra_B = 0;
+		if(i < A.ncifras)cifra_A = A.cifras[i];
+		if(i < B.ncifras)cifra_B = B.cifras[i];
 		int suma = A.cifras[i] + B.cifras[i] + me_llevo;
 		R.cifras[i] = suma % 10;
 		me_llevo = suma / 10;
 	}
+	if(me_llevo > 0) {
+		R.cifras[i] = me_llevo;
+	}
 	R.ncifras = ncifras + me_llevo;
+}
+
+void multiplica(const Numero& A, int cifra, Numero& R) {
+	int me_llevo = 0, ncifras = A.ncifras;
+	for (int i = 0; i < ncifras; ++i) {
+		int mult = (A.cifras[i] * cifra) + me_llevo;
+		R.cifras[i] = mult % 10;
+		me_llevo = mult / 10;
+	}
+	R.ncifras = ncifras;	
+	if (me_llevo > 0) {
+		R.cifras[i] = me_llevo;
+		R.ncifras++;
+	}
 }
 
 int main() {
