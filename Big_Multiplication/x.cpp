@@ -61,6 +61,14 @@ void multiplica(const Numero& A, int cifra, Numero& R) {
 	}
 }
 
+void copia(const Numero& A, Numero& B) {
+	B.ncifras = A.ncifras;
+	int i;
+	for (int i = 0; i < A.ncifras; ++i) {
+		B.cifras[i] = A.cifras[i];
+	}
+}
+
 int main() {
 	int n;
 	Numero A, B, M, Total;
@@ -83,10 +91,11 @@ int main() {
 		multiplica(A, B.cifras[i], M);
 		Numero R;
 		suma(Total, M, R); // R = Total + M
-						   // Total = R
+		copia(R, Total);   // Total = R
 		escribir_numero(M);	
 		cout << endl;
 	}
 	//suma(A, B, R);
 	cout << "------------" << endl;
+	escribir_numero(Total);
 }
