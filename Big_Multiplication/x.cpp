@@ -62,10 +62,31 @@ void multiplica(const Numero& A, int cifra, Numero& R) {
 }
 
 int main() {
-	Numero A, B, R;
+	int n;
+	Numero A, B, M, Total;
+	//Inicializamos Total a 0 
+	Total.ncifras = 1;
+	Total.cifras[0] = 0;
+	cout << "Numero A?";
 	leer_numero(A);
-	leer_numero(B);	
-	suma(A, B, R);
-	escribir_numero(R);
+	cout << "Numero B?";
+	leer_numero(B);
+
+	escribir_numero(A);
 	cout << endl;
+	escribir_numero(B);
+	cout << endl;
+
+	cout << "------------" << endl;
+
+	for (int i = 0; i < B.ncifras; ++i) {
+		multiplica(A, B.cifras[i], M);
+		Numero R;
+		suma(Total, M, R); // R = Total + M
+						   // Total = R
+		escribir_numero(M);	
+		cout << endl;
+	}
+	//suma(A, B, R);
+	cout << "------------" << endl;
 }
