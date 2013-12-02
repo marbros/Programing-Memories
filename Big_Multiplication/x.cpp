@@ -69,9 +69,17 @@ void copia(const Numero& A, Numero& B) {
 	}
 }
 
+void por_10(Numero& A) {
+	for (int i = A.ncifras; i > 0; --i) {
+		A.cifras[i] = A.cifras[i-1];
+	}
+	A.cifras[0] = 0;
+	A.ncifras++;
+}
+
 int main() {
 	int n;
-	Numero A, B, M, Total;
+	Numero A, B, M, R, Total;
 	//Inicializamos Total a 0 
 	Total.ncifras = 1;
 	Total.cifras[0] = 0;
@@ -89,11 +97,13 @@ int main() {
 
 	for (int i = 0; i < B.ncifras; ++i) {
 		multiplica(A, B.cifras[i], M);
-		Numero R;
+		escribir_numero(M);
+		cout << endl;
+		for (int j = 0; j < i; ++j) {
+			por_10(M);
+		}			
 		suma(Total, M, R); // R = Total + M
 		copia(R, Total);   // Total = R
-		escribir_numero(M);	
-		cout << endl;
 	}
 	//suma(A, B, R);
 	cout << "------------" << endl;
