@@ -21,10 +21,10 @@ void escribir_numero(const Numero& N) {
 	}	
 }
 
-void espacios(int n) {
+void change_char(char c, int n) {
 	for (int i = 0; i < n; ++i)
 	{
-		cout << " ";
+		cout << c;
 	}
 }
 
@@ -95,19 +95,21 @@ int main() {
 	cout << "Numero B?";
 	leer_numero(B);
 
-	espacios(30 - A.ncifras);
+	change_char(' ', 30 - A.ncifras);
 	escribir_numero(A);
 	cout << endl;
-	espacios(30 - B.ncifras);
+	change_char(30 - B.ncifras);
 	cout << 'x';
-	espacios(29 - B.ncifras);
+	espacios(' ', 29 - B.ncifras);
 	escribir_numero(B);
 	cout << endl;
 
-	cout << "-------------------------" << endl;
+	change_char('-', 30);
+	cout << endl;
 
 	for (int i = 0; i < B.ncifras; ++i) {
 		multiplica(A, B.cifras[i], M);
+		change_char(' ', 30 - M.ncifras - i);
 		escribir_numero(M);
 		cout << endl;
 		for (int j = 0; j < i; ++j) {
@@ -117,6 +119,10 @@ int main() {
 		copia(R, Total);   // Total = R
 	}
 	//suma(A, B, R);
-	cout << "------------" << endl;
+	change_char('-', 30);
+	cout << endl;
+
+	change_char(' ', 30 - Total.ncifras);
 	escribir_numero(Total);
+	cout << endl;	
 }
