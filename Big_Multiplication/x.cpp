@@ -7,10 +7,25 @@ struct Numero {
 	int ncifras;
 };
 
+void copia(const Numero& A, Numero& B) {
+	B.ncifras = A.ncifras;
+	int i;
+	for (int i = 0; i < A.ncifras; ++i) {
+		B.cifras[i] = A.cifras[i];
+	}
+}
+
 void escribir_numero(const Numero& N) {
 	for (int i = N.ncifras - 1; i >= 0; --i) {
 		cout << N.cifras[i];
 	}	
+}
+
+void espacios(int n) {
+	for (int i = 0; i < n; ++i)
+	{
+		cout << " ";
+	}
 }
 
 void leer_numero(Numero& N) {
@@ -61,14 +76,6 @@ void multiplica(const Numero& A, int cifra, Numero& R) {
 	}
 }
 
-void copia(const Numero& A, Numero& B) {
-	B.ncifras = A.ncifras;
-	int i;
-	for (int i = 0; i < A.ncifras; ++i) {
-		B.cifras[i] = A.cifras[i];
-	}
-}
-
 void por_10(Numero& A) {
 	for (int i = A.ncifras; i > 0; --i) {
 		A.cifras[i] = A.cifras[i-1];
@@ -88,12 +95,16 @@ int main() {
 	cout << "Numero B?";
 	leer_numero(B);
 
+	espacios(30 - A.ncifras);
 	escribir_numero(A);
 	cout << endl;
+	espacios(30 - B.ncifras);
+	cout << 'x';
+	espacios(29 - B.ncifras);
 	escribir_numero(B);
 	cout << endl;
 
-	cout << "------------" << endl;
+	cout << "-------------------------" << endl;
 
 	for (int i = 0; i < B.ncifras; ++i) {
 		multiplica(A, B.cifras[i], M);
