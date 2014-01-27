@@ -14,7 +14,14 @@ public class Bresenham extends JPanel {
 
   public static void Bresenham(x1, y1, x2, y2) {
     
+    int dx =  x1 - x2; 
+    int dy =  y1 - y2;
+    int p = 2*dy -dx;
 
+    if( dx > dy ) {
+      const1 = 2*dy;
+      const2 = 2 * (dy -dx);
+    }
   }    
     
       
