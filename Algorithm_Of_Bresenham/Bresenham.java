@@ -4,13 +4,36 @@ package bresenham;
  * @author Mario
  */
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Insets;
+
 import javax.swing.JPanel;
+import javax.swing.JFrame;
+
+import java.util.Random; 
 
 public class Bresenham extends JPanel {
 
-    public static JPanel panel ;    
+  public static JPanel panel ;    
+
+    @Override
+  public void paintComponent(Graphics g) {
+      super.paintComponent(g);
+
+      Graphics2D g2d = (Graphics2D) g;
+
+      g2d.setColor(Color.BLUE);
+
+      Dimension size = getSize();
+      Insets insets = getInsets();
+
+      int w =  size.width - insets.left - insets.right;
+      int h =  size.height - insets.top - insets.bottom;
+
+  }   
 
   public static void Bresenham(x1, y1, x2, y2) {
     
