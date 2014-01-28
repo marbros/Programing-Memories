@@ -52,7 +52,10 @@ public class Bresenham extends JPanel {
         JFrame frame = new JFrame("Bresenham");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JOptionPane.showInputDialog("");
-        frame.setVisible(true);        
+        frame.add(new Bresenham());
+        frame.setSize(300, 350);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);      
     }
 }
   
