@@ -33,6 +33,12 @@ public class Bresenham extends JPanel {
       int w =  size.width - insets.left - insets.right;
       int h =  size.height - insets.top - insets.bottom;
 
+      g2d.setColor(Color.BLUE);
+      int x1 = Math.abs(r.nextInt()) % w;
+      int y1 = Math.abs(r.nextInt()) % h;
+      int x2 = Math.abs(r.nextInt()) % w;
+      int y2 = Math.abs(r.nextInt()) % h;      
+
   }   
 
   public static void Bresenham(x1, y1, x2, y2) {
