@@ -37,7 +37,22 @@ public class Bresenham extends JPanel {
       int x1 = Math.abs(r.nextInt()) % w;
       int y1 = Math.abs(r.nextInt()) % h;
       int x2 = Math.abs(r.nextInt()) % w;
-      int y2 = Math.abs(r.nextInt()) % h;      
+      int y2 = Math.abs(r.nextInt()) % h;     
+
+      int rad = r.nextInt();
+      int x = 0;
+      int y = rad;
+
+      for (int i = x; i < y; i++) {
+          g2d.drawLine(y, x, y, x);
+          g2d.drawLine(x, y, x, y);
+          g2d.drawLine(x, -y, x,-y);
+          g2d.drawLine(y, -x, y, -x);
+          g2d.drawLine(-y, -x,-y, -x);
+          g2d.drawLine(-x, -y, -x, -y);
+          g2d.drawLine(-x, y, -x, y);
+          g2d.drawLine(-y, x, -y, x);
+      } 
 
   }   
 
