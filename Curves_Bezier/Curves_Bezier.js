@@ -42,8 +42,23 @@ function paintQuad(e) {
 	lastY = e.lastY;
 }
 
-function dibujaBez(e) {
+function bezierBez(e) {
+	if(BlastX != null && BprelastX !=y) {
+		context.strokeStyle = "#FF0000";
+		context.beginPath();
+		context.moveTo(prelastX, prelastY);
+		context.bezierCurveTo(BpreLastX, BprelastY, BlastX, BlastY, e.layerX, e.layerY);
+		context.stroke();
 
+		prelastX = null;
+		prelastY = null;
+	}else if(lastX != null) {
+		prelastX = lastX;
+		prelastY = lastY;
+	}
+
+	lastX = e.layerX;
+	lastY = e.lastY;
 }
 
 function addListener() {
