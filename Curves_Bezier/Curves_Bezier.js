@@ -21,3 +21,19 @@ function init() {
 	}
 }
 
+function paintQuad(e) {
+
+}
+
+function addListener() {
+	canvas.addListener("mouseDown", mouseDown);
+	canvas.addListener("touchDown", touchDown);	
+}
+
+function mouseDown(e) {
+	paintQuad(e);
+}
+
+function touchDown(e) {
+	paintQuad(e);
+}
