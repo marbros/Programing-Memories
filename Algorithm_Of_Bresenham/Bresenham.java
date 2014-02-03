@@ -34,38 +34,41 @@ public class Bresenham extends JPanel {
       int h =  size.height - insets.top - insets.bottom;
 
       g2d.setColor(Color.BLUE);
-      int x1 = Math.abs(r.nextInt()) % w;
-      int y1 = Math.abs(r.nextInt()) % h;
-      int x2 = Math.abs(r.nextInt()) % w;
-      int y2 = Math.abs(r.nextInt()) % h;     
+      // int x1 = Math.abs(r.nextInt()) % w;
+      // int y1 = Math.abs(r.nextInt()) % h;
+      // int x2 = Math.abs(r.nextInt()) % w;
+      // int y2 = Math.abs(r.nextInt()) % h;   
 
-      int rad = r.nextInt();
-      int x = 0;
-      int y = rad;
+      int valx, valy, rad; // Ubicación y radio de cada circulo  
 
-      for (int i = x; i < y; i++) {
-          g2d.drawLine(y, x, y, x);
-          g2d.drawLine(x, y, x, y);
-          g2d.drawLine(x, -y, x,-y);
-          g2d.drawLine(y, -x, y, -x);
-          g2d.drawLine(-y, -x,-y, -x);
-          g2d.drawLine(-x, -y, -x, -y);
-          g2d.drawLine(-x, y, -x, y);
-          g2d.drawLine(-y, x, -y, x);
+      for (int i = 0; i <= 1000 ; i++) {
+
+          rad = (int)(Math.random()*100);
+          valx = (int)(Math.random()*w);
+          valy = (int)(Math.random()*h);
+
+          int x,y,param;
+          x = 0;
+          y = rad;
+          param = 3-2*rad; 
+
+          while(x < y) {
+              if(param < 0) {
+                  param = param + 4 * x +6;
+              }else {
+                  param = param + 4* (x-y) +10;
+                  y = y-1;
+              }
+              x++;
+              paintPoints(valx, valy, x, y);
+          }                   
       } 
 
   }   
 
-  public static void Bresenham(x1, y1, x2, y2) {
+  public static void paintPoints(x1, y1, x2, y2) {
     
-    int dx =  x1 - x2; 
-    int dy =  y1 - y2;
-    int p = 2*dy -dx;
 
-    if( dx > dy ) {
-      const1 = 2*dy;
-      const2 = 2 * (dy -dx);
-    }
   }    
     
       
@@ -73,7 +76,9 @@ public class Bresenham extends JPanel {
         JFrame frame = new JFrame("Bresenham");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JOptionPane.showInputDialog("");
-        frame.add(new Bresenham());
+        Bresenham circle = new Bresenham();
+        frame.add(circle);
+        frame.setBackground(Color.BLACK);
         frame.setSize(300, 350);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);      
