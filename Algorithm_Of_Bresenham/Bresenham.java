@@ -25,8 +25,6 @@ public class Bresenham extends JPanel {
 
       Graphics2D g2d = (Graphics2D) g;
 
-      g2d.setColor(Color.BLUE);
-
       Dimension size = getSize();
       Insets insets = getInsets();
 
@@ -64,11 +62,21 @@ public class Bresenham extends JPanel {
 
 
   public static void coloR(Graphics2D g2d) {
-      Random rand = new Random();
-      float r , g , b;
-      r = g = b = rand.nextFloat();
-      Color rgb = new Color(r,g,b);
-         
+      String colors []= {"255,0,255", "0,255,255"};
+      int r , g , b;
+      r = g = b = 255;
+      String [] c;
+      int num = (int)(Math.random()*color.length);
+      for(int i = num; i <= color.length; ++i) {
+          c = colors[i].split(",");
+          r = Integer.parseInt(c[0]);
+          g = Integer.parseInt(c[1]);
+          b = Integer.parseInt(c[2]);
+          i = colors.length;
+      }
+      Color rgb = new Color(r,g,b);                  
+      g2d.setColor(rgb);  
+
       //to get rainbow, pastel colors
       Random random = new Random();
       final float hue = random.nextFloat();
