@@ -29,6 +29,19 @@ public class Lian_Barsky extends JPanel {
       int w =  size.width - insets.left - insets.right;
       int h =  size.height - insets.top - insets.bottom;
 
+      int xp = w/2;
+      int yp = h/2;
+      int P_Izquierdo = w/4;
+      int P_Derecho = w*3/4;
+      int P_Superior = h/4;
+      int P_Inferior = h*3/4;      
+      
+      //g2d.drawLine(xp, yp, xp, yp); //punto centro
+      g2d.drawLine(P_Izquierdo,P_Superior,P_Izquierdo,P_Inferior);//Linea Izquierda
+      g2d.drawLine(P_Izquierdo,P_Superior,P_Derecho,P_Superior);//Linea Superior
+      g2d.drawLine(P_Derecho,P_Inferior,P_Derecho,P_Superior);//Linea Derecha
+      g2d.drawLine(P_Derecho,P_Inferior,P_Izquierdo,P_Inferior);//Linea Inferior
+
   }    
     
     public static void main(String[] args) {
