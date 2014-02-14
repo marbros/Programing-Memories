@@ -1,4 +1,4 @@
-#SimuProc 1.4.3.0
+﻿#SimuProc 1.4.3.0
 ;-ordena los enteros en la posicion 500+
 ;-ordena los flotantes en la posicion 800+
 ;-los numeros enteros son precedidos por un 0
@@ -50,4 +50,44 @@ inc 202
 ;recorrido++
 jmp 0
 ;goto 0
+
+
+;lectura flotante()
+lda 201
+;ax = cFlotante
+mov bx,204
+;bx = posicionamientoFlotante
+stb 800
+;memoria[800+posicionamientoEnteros]=ax
+inc 204
+;posicionamientoFlotante++
+inc 202
+;recorrido++
+mov bx,202
+;bx = recorrido
+ldb 300
+;ax = memoria[300+bx]
+mov bx,204
+;bx = posicionamientoFlotante
+stb 800
+;memoria[800+posicionamientoFlotante]=ax
+inc 204
+;posicionamientoFlotante++
+inc 202
+;recorrido++
+mov bx,202
+;bx = recorrido
+ldb 300
+;ax = memoria[300+bx]
+mov bx,204
+;bx = posicionamientoFlotante
+stb 800
+;memoria[800+posicionamientoFlotante]=ax
+inc 204
+;posicionamientoFlotante++
+inc 202
+;recorrido++
+jmp 0
+;goto 0
+
 
