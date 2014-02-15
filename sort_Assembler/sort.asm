@@ -182,6 +182,157 @@ lda 200
 sta 206
 jmp 02D
 
+;booble sort FLotante()
+
+mov bx,207;v
+;aqui v
+;bx=recorrido flotante Booble
+ldb 800
+; ax = memoria[bx + 800]
+sta 20A
+; aux1 = ax
+lda 205
+; ax = terminacion
+cmp 20A
+;
+jeq 0B5
+;* cargar numero
+mov bx,207
+ldb 800
+sta 20A
+lda 205
+cmp 20A
+;compara indicador1 con terminal
+jeq 0ab
+;goto z
+inc 207
+;int1
+
+mov bx,207
+ldb 800
+;carga entero1
+sta 208
+;guarda en temp1
+inc 207
+;deci1
+
+mov bx,207
+ldb 800
+;carga decimal1
+sta 20C
+;guarda en decimal1
+inc 207
+;indicador2
+
+mov bx,207
+ldb 800
+;carga indicador2
+sta 20A
+;guarda en auxiliar1
+inc 207
+;int 2
+
+lda 205
+cmp 20A
+;compara indicador2 con terminal
+jeq 0ab
+;goto z
+
+mov bx,207
+ldb 800
+;carga entero2
+sta 209
+;guarda en temp2
+inc 207
+;decimal 2
+
+mov bx,207
+ldb 800
+;carga deci2
+sta 20D
+;guarda en decimal2
+
+lda 209
+cmp 208
+;comparacion entre parte entera
+
+jma 0a2
+;goto x
+
+jme 08b
+;goto y
+
+jeq 0a5
+;goto w
+
+;cambio
+;aqui x mayor
+dec 207
+;int2
+dec 207
+;indi2
+dec 207
+;deci1
+dec 207
+;int1
+lda 209
+mov bx,207
+stb 800
+;entrega a int1 tmp2
+inc 207
+;deci1
+lda 20D
+mov bx,207
+stb 800
+;entrega a decimal1 deci2
+inc 207
+;indica2
+inc 207
+;int2
+lda 208
+mov bx,207
+stb 800
+;entrega a int2 tmp1
+inc 207
+;dec2
+lda 20C
+mov bx,207
+stb 800
+;entrega a decimal2 deci1
+dec 207
+;int2
+dec 207
+;indica2
+jmp 069
+;go to *
+
+;no cambia
+;aqui y
+dec 207
+;int2
+dec 207
+;ind2
+jmp 069
+
+;aqui w
+
+lda 20C
+cmp 20D
+;comparacion entre parte decimal
+
+jma 08b
+;goto x
+
+jme 0a2
+;goto y
+
+jeq 0a2
+;goto y
+
+jmp 069
+;go to *
+
+
 ;variables y constantes
 #200
 0
