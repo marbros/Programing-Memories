@@ -90,4 +90,17 @@ inc 202
 jmp 0
 ;goto 0
 
+;poner terminaciones()
+lda 205
+;ax = terminación
+mov bx,203
+;bx = posicionamientoEntero
+stb 500
+;memoria[500+posicionamientoEnteros]=ax
+lda 205
+;ax = terminación
+mov bx,204
+;bx = posicionamientoFlotante
+stb 800
+;memoria[800+posicionamientoEnteros]=ax
 
