@@ -104,3 +104,117 @@ mov bx,204
 stb 800
 ;memoria[800+posicionamientoEnteros]=ax
 
+;booble sort int()
+
+mov bx,206
+;bx=recorridoIntBooble
+ldb 500
+; ax = memoria[bx + 500]
+sta 20A
+; aux1 = ax
+lda 205
+; ax = terminacion
+cmp 20A
+;
+jeq 063
+;*
+mov bx,206
+; bx =
+ldb 500
+sta 20A
+lda 205
+cmp 20A
+jeq 05B
+;z
+
+inc 206
+mov bx,206
+
+ldb 500
+sta 208
+inc 206
+mov bx,206
+ldb 500
+sta 20A
+lda 205
+cmp 20A
+jeq 05B
+;goto z
+inc 206
+
+mov bx,206
+ldb 500
+sta 209
+lda 208
+cmp 209
+jma 04D
+;goto x
+jme 059
+;goto y
+jeq 059
+;goto y
+;cambio
+;aqui x
+dec 206
+dec 206
+lda 209
+mov bx,206
+stb 500
+inc 206
+inc 206
+lda 208
+mov bx,206
+stb 500
+dec 206
+jmp 033
+;no cambia
+;aqui y
+dec 206
+jmp 033
+;fin iteración
+;aqui z
+dec 206
+dec 206
+lda 205
+mov bx,206
+stb 500
+lda 200
+sta 206
+jmp 02D
+
+;variables y constantes
+#200
+0
+;constante cEntero 200
+1
+;constante cFlotantes 201
+0
+;variable recorrido 202
+0
+;variable posicionamientoEntero 203
+0
+;variable posicionamientoFlotante 204
+10
+;constante terminación 205
+0
+;variable recorrido entero sort 206
+
+;numeros a analizar
+#300
+0
+101
+0
+11
+0
+1
+1
+110
+101
+1
+1101111
+101111
+1
+11011
+11111
+10
+
