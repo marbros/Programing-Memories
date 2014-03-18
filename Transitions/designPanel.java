@@ -82,6 +82,13 @@ public class designPanel extends JPanel implements MouseListener, MouseMotionLis
 		paintImmediately(0, 0, dimX, dimY);        
     }
 
+    private void cartesianPlane(Graphics2D g2d){
+        g2d.setStroke(new BasicStroke(5));
+		g2d.setColor(Color.BLUE); 
+        g2d.drawLine(midX, 0, midX, dimY); //vertical line        
+        g2d.drawLine(0, midY, dimX, midY); //horizontal line        
+    }     
+
     private void paintCursor(Graphics2D g2d){
     	g2d.setColor(Color.GRAY);
     	String pos = cursorX + ", " + cursorY*-1;
