@@ -92,6 +92,18 @@ public class designPanel extends JPanel implements MouseListener, MouseMotionLis
     	g2d.setColor(Color.WHITE);
     	g2d.drawString(pos, mx + 5, my);
     } 
+
+    private void paintPoints(Graphics2D g2d) {
+        g2d.setColor(Color.CYAN);
+        for(int i = 0; i < figure.size(); ++i){
+            punto2D point = figure.get(i);
+            int x = (int)point.getX();
+            int y = (int)point.getY();
+            g2d.fillOval(x + midX, -y + midY, 8, 8);
+            preImageG2D.setColor(g2d.getColor());
+            preImageG2D.fillOval(x + midX, -y + midY, 8, 8);
+        }   
+    }     
     
     // Method that paints into the panel
     @Override
