@@ -67,6 +67,8 @@ public class designPanel extends JPanel implements MouseListener, MouseMotionLis
 
     @Override
     public void mouseExited(MouseEvent me) {
+	cursorX = cursorY = 31313;
+	paintImmediately(0, 0, dimX, dimY);       	
     }
 
     @Override
@@ -75,7 +77,21 @@ public class designPanel extends JPanel implements MouseListener, MouseMotionLis
 
     @Override
     public void mouseMoved(MouseEvent me) {
+		cursorX = me.getX() - midX;
+		cursorY = me.getY() - midY;
+		paintImmediately(0, 0, dimX, dimY);        
     }
+
+    private void paintCursor(Graphics2D g2d){
+    	g2d.setColor(Color.GRAY);
+    	String pos = cursorX + ", " + cursorY*-1;
+    	int mx = cursorX + midX;
+    	int my = cursorY + midY;
+            // x, y, w, h, arcw, arch
+    	g2d.fillRoundRect(mx, my - 15, pos.length()*7, 20, 7, 7); //Paint Rect of Coor X, Y
+    	g2d.setColor(Color.WHITE);
+    	g2d.drawString(pos, mx + 5, my);
+    } 
     
     // Method that paints into the panel
     @Override
