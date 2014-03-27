@@ -28,7 +28,14 @@ int main(){
             cin >> a >> b;
             m[b]++;
         }
-        dev = 0;
+
+        v = vector<pair<string,int> >(m.begin(),m.end());
+        tam = v.size();
+        long long dev = 1;
+        for(int i = 0; i < tam; i++) {
+            dev *= (v[i].second + 1);
+        }
+
         cout<<dev-1<<endl;
     }
     
