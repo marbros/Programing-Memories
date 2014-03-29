@@ -1,10 +1,29 @@
-#include <cstdio>
-#include <conio.h>
-#include <iostream>
+#include "stdafx.h"
 #include <stdlib.h>
+#include <iostream>
 #include <windows.h>
+#include <vector>
 
 using namespace std;
+using namespace System;
+
+int puzzle;
+int res = 1;
+
+int cantidadTorres;
+
+std::vector<int> a;
+std::vector<int> b;
+std::vector<int> c;
+
+void iniciar(int n){
+	a.clear();
+	b.clear();
+	c.clear();
+	for(int i=n;i>0;i--){
+		a.push_back(i);
+	}
+}
 
 void hanoi(int puzzle, char from, char help, char into) {
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
