@@ -63,6 +63,37 @@ void action(int option) {
 	}
 }
 
+int beginParam() {
+	int paracom,itera,numero2;
+	printf( "Ingrese la Cantidad de discos   " );
+	scanf( "%d", &cantidadTorres );
+	printf("\n");
+	getchar();
+	//Recursivo
+	__asm{
+		mov paracom,1
+		mov itera,0
+		mov numero2,2
+forncuad:
+		mov eax,itera
+		cmp eax,cantidadTorres
+		jge finforncuad
+		mov eax,paracom
+		mul numero2
+		mov paracom,eax
+		inc itera
+		jmp forncuad
+finforncuad:
+		mov eax,paracom
+		mov paracom,eax
+		dec paracom
+	}
+	escribirNum(paracom);
+	iniciar(cantidadTorres);
+	
+	return cantidadTorres;
+}
+
 int main() {
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 	int puzzle;
