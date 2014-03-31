@@ -27,6 +27,17 @@ public class Vector {
         return (a[0]*b[0]+a[1]*b[1]+a[2]*b[2]);
     }
     
+    public static Vector crossProduct(Vector x, Vector y){
+        float[] a = x.getVector();
+        float[] b = y.getVector();
+        Vector naya = new Vector();
+        float i = a[1]*b[2] - a[2]*b[1];
+        float j = a[2]*b[0] - a[0]*b[2];
+        float k = a[0]*b[1] - a[1]*b[0];
+        naya.setVector(i,j,k);
+        return naya;
+    }
+    
     public Vector unitVector(){
         float d = (float) Math.sqrt(vect[0]*vect[0]+vect[1]*vect[1]+vect[2]*vect[2]);
         Vector v = new Vector();
