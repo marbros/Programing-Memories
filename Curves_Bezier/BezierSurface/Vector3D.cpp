@@ -21,6 +21,12 @@ public class Vector {
         return this.vect;
     }
     
+    public static float dotProduct(Vector x, Vector y){
+        float[] a = x.getVector();
+        float[] b = y.getVector();
+        return (a[0]*b[0]+a[1]*b[1]+a[2]*b[2]);
+    }
+    
     public Vector unitVector(){
         float d = (float) Math.sqrt(vect[0]*vect[0]+vect[1]*vect[1]+vect[2]*vect[2]);
         Vector v = new Vector();
