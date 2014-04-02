@@ -24,5 +24,17 @@ public class Matrix2D {
         //Create new matriz...
     }
 
+    public void translate(double transX, double transY) {
+        double matriz[][] = {{ 1, 0, transX }, 
+                             { 0, 1, transY }, 
+                             { 0, 0,      1 }};
+
+    }
+
+    public void scale(double sclX, double sclY) {
+        double matrix[][] = {{ sclX,    0, 0 }, 
+                             {    0, sclY, 0 }, 
+                             {    0,    0, 1 }};
+    }
        
 }
