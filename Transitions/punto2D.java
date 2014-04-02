@@ -34,6 +34,5 @@ public class punto2D {
     public void setPunto(Dimension punto,int w, int h) {
         this.punto = mapPoint(punto,w,h);
     }
-        
-    
+       
 }
