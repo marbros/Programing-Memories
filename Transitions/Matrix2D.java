@@ -36,5 +36,17 @@ public class Matrix2D {
                              {    0, sclY, 0 }, 
                              {    0,    0, 1 }};
     }
+
+    public static float[][] transpose(float A[][]) {
+        int Rows = A.length,
+            Columns = A[0].length;
+
+        float[][] resultant = new float[Columns][Rows];
+        
+        for(int i=0; i < Rows; i++)
+            for (int j = 0; j < Columns; j++)
+                resultant[j][i] = A[i][j];
+        return resultant;
+    }
        
 }
