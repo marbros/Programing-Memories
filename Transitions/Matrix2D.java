@@ -48,5 +48,16 @@ public class Matrix2D {
                 resultant[j][i] = A[i][j];
         return resultant;
     }
+
+    public static float[][] normalize(float A[][]){
+        int Rows = A.length,
+            Columns = A[0].length;
+        float[][] resultant = new float[Rows-1][Columns];
+        for (int i = 0; i < Rows-1; i++){
+            for (int j = 0; j < Columns; j++)
+                resultant[i][j] = A[i][j] / A[Rows-1][j];
+        }
+        return resultant;
+    }    
        
 }
