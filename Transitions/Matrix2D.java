@@ -59,5 +59,24 @@ public class Matrix2D {
         }
         return resultant;
     }    
-       
+      
+    public static float dotProduct(Vector x, Vector y){
+        float[] a = x.getVector();
+        float[] b = y.getVector();
+        return (a[0]*b[0]+a[1]*b[1]+a[2]*b[2]);
+    }
+    
+    public static Vector crossProduct(Vector x, Vector y){
+        float[] a = x.getVector();
+        float[] b = y.getVector();
+        
+        Vector result = new Vector();
+        
+        float i = a[1]*b[2] - a[2]*b[1];
+        float j = a[2]*b[0] - a[0]*b[2];
+        float k = a[0]*b[1] - a[1]*b[0];
+        result.setVector(i,j,k);
+        
+        return result;
+    }         
 }
