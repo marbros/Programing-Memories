@@ -72,6 +72,19 @@ public class designPanel extends JPanel implements MouseListener, MouseMotionLis
                 x++;
             }
     }       
+
+    private void ePointsSurface(){
+ 
+         float[][] srfc = new float[points.size()][3];
+        
+        for (int i=0;i<points.size();i++){
+            srfc[i] = points.get(i).getTruePoints();
+        }
+        
+        for (int i=0;i<points.size();i++){
+            points.get(i).setTransform(srfc[i][0],srfc[i][1],srfc[i][2]);
+        }        
+    }
     
     @Override
     public void mouseClicked(MouseEvent me) {
