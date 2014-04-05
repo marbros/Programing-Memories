@@ -49,9 +49,29 @@ public class designPanel extends JPanel implements MouseListener, MouseMotionLis
 
     // Reset the currently rendered image
     private void resetCurrentImage(){
-	preImage = null;
-	preImageG2D = null;
-    }     
+    	preImage = null;
+    	preImageG2D = null;
+    }  
+
+    private void evalPointControl(){
+
+        float[][] ctrl = new float[16][3];
+        int x=0;
+        /* Load the array for perpectization */
+        for (int row=0;row<4;row++) {
+            for (int col=0;col<4;col++){
+                ctrl[x] = controlPoints[row][col].getTruePoints();
+                x++;
+            }
+        }
+        
+        x=0;
+        for (int row=0;row<4;row++)
+            for (int col=0;col<4;col++){
+                controlPoints[row][col].setTransform(ctrl[x][0],ctrl[x][1],ctrl[x][2]);
+                x++;
+            }
+    }       
     
     @Override
     public void mouseClicked(MouseEvent me) {
