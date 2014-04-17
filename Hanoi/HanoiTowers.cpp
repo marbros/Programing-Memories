@@ -63,6 +63,99 @@ void action(int option) {
 	}
 }
 
+int iterativo(int n){ 
+	iniciar(cantidadTorres);
+	int x, i ,j , fr,to,paracom,numMenos1,opAnd,opOr,itera;
+	int numero3=3;
+	int numero2=2;
+	int numDisc = n;
+	int op1=1;
+	__asm {
+		mov x,1
+		mov paracom,1
+		mov itera,0
+forncuad:
+		mov eax,itera
+		cmp eax,n
+		jge finforncuad
+		mov eax,paracom
+		mul numero2
+		mov paracom,eax
+		inc itera
+		jmp forncuad
+finforncuad:
+		mov eax,paracom
+		mov paracom,eax
+		dec paracom
+	}
+		//escribirNum(paracom);
+	__asm{
+		inc paracom
+		ciclo:
+		mov eax,x
+		cmp eax,paracom
+		jge fin
+		mov eax,x
+		dec eax
+		mov numMenos1,eax
+		mov eax,x
+		and eax,numMenos1
+		mov opAnd,eax
+		mov edx,0
+		div numero3
+		mov fr,edx
+		mov eax,x
+		dec eax
+		mov numMenos1,eax
+		mov eax,x
+		or eax,numMenos1
+		inc eax
+		mov opOr,eax
+		mov edx,0
+		div numero3
+		mov to,edx
+		mov eax,numDisc
+		nop
+		mov edx,0
+		div numero2
+		cmp edx,0
+		je esPar
+		jg noEsPar
+		esPar:	
+		mov eax,fr
+		cmp eax,1
+		jg fr2
+		je fr1
+		jl outFr
+		fr2:	
+		mov fr,1
+		jmp outFr
+		fr1:	
+		mov fr,2
+		outFr:	
+		mov eax,to
+		cmp eax,1
+		jg to2
+		je to1
+		jl outto
+		to2:	
+		mov to,1
+		jmp outto
+		to1:	
+		mov to,2
+		outto:	
+		nop
+		noEsPar:
+		inc x
+	}
+	mover(fr+1,to+1);
+	_asm{
+		jmp ciclo
+fin:	
+		nop
+	}
+}
+
 int beginParam() {
 	int paracom,itera,numero2;
 	printf( "Ingrese la Cantidad de discos   " );
