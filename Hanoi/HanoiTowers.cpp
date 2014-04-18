@@ -230,6 +230,28 @@ finforncuad:
 	return cantidadTorres;
 }
 
+void action(int option) {
+	
+	int canTowers = 0;	
+	switch (option) {
+		case 2:
+			canTowers = beginParam();
+			recursivo(canTowers,1,3,2);
+			config();
+		   break;
+		case 3:
+			canTowers = beginParam();
+			iterativo(canTowers);
+			config(); 			   		   
+		   break;
+		case 5:
+		   exit(0);		   
+		   break;		   	   
+		default:
+		   cout << "Opcion invalida" << endl;
+	}
+}
+
 int main() {
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 	int puzzle;
