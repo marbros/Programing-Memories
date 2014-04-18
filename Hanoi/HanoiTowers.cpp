@@ -156,6 +156,49 @@ fin:
 	}
 }
 
+void recursivo(int n, int from, int to, int via){
+	int nMenos1;
+	int cero=0;
+	__asm{
+		mov eax,n
+		cmp eax,cero
+		jle termino
+		mov eax,to
+		push eax
+		mov eax,via
+		push eax
+		mov eax,from
+		push eax
+		mov eax,n
+		dec eax
+		push eax
+		call recursivo
+		pop edx
+		pop edx
+		pop edx
+		pop edx
+	}
+		mover(from,to);
+	__asm{
+		mov eax,from
+		push eax
+		mov eax,to
+		push eax
+		mov eax,via
+		push eax
+		mov eax,n
+		dec eax		
+		push eax
+		call recursivo
+		pop edx
+		pop edx
+		pop edx
+		pop edx
+termino:
+		nop
+	}
+}
+
 int beginParam() {
 	int paracom,itera,numero2;
 	printf( "Ingrese la Cantidad de discos   " );
