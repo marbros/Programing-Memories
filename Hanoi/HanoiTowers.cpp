@@ -230,6 +230,29 @@ finforncuad:
 	return cantidadTorres;
 }
 
+void menu() {
+	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(h, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	cout << "\n\t < << T O R R E S  D E  H A N O I >> > \n" << endl;
+	SetConsoleTextAttribute(h, FOREGROUND_BLUE | FOREGROUND_INTENSITY);	
+	cout << "\t \t \t Menu \n" << endl;
+	SetConsoleTextAttribute(h, FOREGROUND_INTENSITY);
+	cout << " \t 2.";
+	SetConsoleTextAttribute(h, FOREGROUND_GREEN | FOREGROUND_INTENSITY);	
+	cout << " RECURSIVO ";
+	SetConsoleTextAttribute(h, FOREGROUND_INTENSITY);
+	cout << "Implementacion del Algoritmo Recursivamente \n \n \t 3. ";
+	SetConsoleTextAttribute(h, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	cout <<	"ITERATIVO ";
+	SetConsoleTextAttribute(h, FOREGROUND_INTENSITY);
+	cout << "Implementacion del Algoritmo Iterativamente." << endl;
+	cout << " \n \n \t 5.";
+	SetConsoleTextAttribute(h, FOREGROUND_RED  | FOREGROUND_INTENSITY);
+	cout << " SALIR. \n";
+	SetConsoleTextAttribute(h, FOREGROUND_INTENSITY);
+	cout << "\t --------------------------------------------------" << endl;
+}
+
 void action(int option) {
 	
 	int canTowers = 0;	
