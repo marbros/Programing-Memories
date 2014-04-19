@@ -25,6 +25,10 @@ void iniciar(int n){
 	}
 }
 
+void escribirNum(int n){
+	printf("\t El algoritmo necesita %d pasos para terminar\n",n); 
+}
+
 void hanoi(int puzzle, char from, char help, char into) {
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 	if(puzzle > 0) {
@@ -34,33 +38,6 @@ void hanoi(int puzzle, char from, char help, char into) {
 		printf("\t\t | Mueva la Pieza %d De %c a la Torre %c        |\n", puzzle, from, into);
 		hanoi(puzzle - 1, help, from, into);
 	} 
-}
-
-void config() {
-	system("cls");
-	menu();
-}
-
-void action(int option) {
-	
-	int canTowers = 0;	
-	switch (option) {
-		case 2:
-			canTowers = beginParam();
-			recursivo(canTowers,1,3,2);
-			config();
-		   break;
-		case 3:
-			canTowers = beginParam();
-			iterativo(canTowers);
-			config(); 			   		   
-		   break;
-		case 5:
-		   exit(0);		   
-		   break;		   	   
-		default:
-		   cout << "Opcion invalida" << endl;
-	}
 }
 
 int iterativo(int n){ 
@@ -253,6 +230,11 @@ void menu() {
 	cout << "\t --------------------------------------------------" << endl;
 }
 
+void config() {
+	system("cls");
+	menu();
+}
+
 void action(int option) {
 	
 	int canTowers = 0;	
@@ -296,4 +278,4 @@ int main() {
 	//system("cls");
 	//system("PAUSE");
 	return 0;
-}	
+}
