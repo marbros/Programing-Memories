@@ -253,24 +253,24 @@ void action(int option) {
 }
 
 int main() {
-	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-	int puzzle;
-	SetConsoleTextAttribute(h, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-	printf("\t\t --------------------------------------------- \n");
-	printf("\t\t               Torres De Hanoi                 \n");
-	printf("\t\t --------------------------------------------- \n");
-	SetConsoleTextAttribute(h, FOREGROUND_BLUE | FOREGROUND_INTENSITY);		
-	printf("\t\t Inserte El numero de piezas que desea :  ");
-	SetConsoleTextAttribute(h, FOREGROUND_RED  | FOREGROUND_INTENSITY);
-	scanf("%d", &puzzle);
-	SetConsoleTextAttribute(h, FOREGROUND_BLUE | FOREGROUND_INTENSITY);	
-	printf("\t\t --------------------------------------------- \n");
-	hanoi(puzzle, 'A', 'B', 'C');
-	printf("\t\t --------------------------------------------- \n");
-	int res = 1;
 
-	for(int i = 0; i < puzzle; i++)
-		res = res * 2;
-	printf("\t\t\t      Cantidad De Pasos: %i", res -1);
-	getch();	
-}
+	menu();
+	int opcion;
+	char str [3];
+
+	do {	
+		cout << endl << ">> Ingrese el numero de la opcion, que desea implementar ... \n" <<endl;
+		cout << ">> ";
+		cin >> str;
+		if(isalpha(str[1])) {
+			cout<<"\n La opcion ingresada no es valida \n";	
+		}else{
+			opcion = atoi(str);	
+			action(opcion);
+		}
+	} while((opcion <= 5) || !(isalpha(str[1])));
+	cin.get();
+	//system("cls");
+	//system("PAUSE");
+	return 0;
+}	
