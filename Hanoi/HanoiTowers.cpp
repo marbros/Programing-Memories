@@ -29,15 +29,55 @@ void escribirNum(int n){
 	printf("\t El algoritmo necesita %d pasos para terminar\n",n); 
 }
 
-void hanoi(int puzzle, char from, char help, char into) {
-	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-	if(puzzle > 0) {
-		hanoi (puzzle - 1, from, into, help);
-		// system ("color B" );
-		SetConsoleTextAttribute(h, FOREGROUND_BLUE | FOREGROUND_INTENSITY);		
-		printf("\t\t | Mueva la Pieza %d De %c a la Torre %c        |\n", puzzle, from, into);
-		hanoi(puzzle - 1, help, from, into);
-	} 
+void dibujar(){
+	printf("-");
+	for(int i=0;i<a.size();i++){
+		printf("%d ",a[i]); 
+	}
+	printf("\n");
+	printf("-");
+	for(int i=0;i<b.size();i++){
+		printf("%d ",b[i]); 
+	}
+	printf("\n");
+	printf("-");
+	for(int i=0;i<c.size();i++){
+		printf("%d ",c[i]); 
+	}
+	printf("\n");
+}
+
+void mover(int from, int to){
+	int  n;
+	if(from==1){
+		n=a.back();
+		a.pop_back();
+		if(to==2){
+			b.push_back(n);
+		}else{
+			c.push_back(n);
+		}
+	}else if(from==2){
+		n=b.back();
+		b.pop_back();
+		if(to==1){
+			a.push_back(n);
+		}else{
+			c.push_back(n);
+		}
+	}else{
+		n=c.back();
+		c.pop_back();
+		if(to==1){
+			a.push_back(n);
+		}else{
+
+			b.push_back(n);
+		}
+	}
+	printf( "\n Mueve el Disco %i de la torre %i a la torre %i.\n", n,from,to);
+	dibujar();
+	getchar();
 }
 
 int iterativo(int n){ 
@@ -278,4 +318,4 @@ int main() {
 	//system("cls");
 	//system("PAUSE");
 	return 0;
-}
+}	
