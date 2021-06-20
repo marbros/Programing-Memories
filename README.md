@@ -19,14 +19,14 @@ space of implementing some algorithms interesting.
   <tr>
     <td> 231 </td>
     <td> <a href="https://leetcode.com/problems/power-of-two">Power of Two</a> </td>
-    <td> <a href="src/letCodeChallenges/powerOfTwo.rs"> Rust </a> </td>
-    <td> <a href="src/letCodeChallenges/powerOfTwo.py"> Python </a> </td>
+    <td> <a href="https://github.com/marbros/Programing-Memories/blob/master/leetCodeChallenges/powerOfTwo.rs"> Rust </a> </td>
+    <td> <a href="https://github.com/marbros/Programing-Memories/blob/master/leetCodeChallenges/powerOfTwo.py"> Python </a> </td>
   </tr>
   <tr>
     <td> 1446 </td>
     <td> <a href="https://leetcode.com/problems/consecutive-characters">Consecutive Characters</a> </td>
     <td> <a href="src/letCodeChallenges/.rs"> Rust </a> </td>
-    <td> <a href="src/letCodeChallenges/consecutiveCharacters.py"> Python </a> </td>
+    <td> <a href="https://github.com/marbros/Programing-Memories/blob/master/leetCodeChallenges/consecutiveCharacters.py"> Python </a> </td>
   </tr>
 </tbody>
 </table>
