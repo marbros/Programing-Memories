@@ -18,9 +18,9 @@ space of implementing some algorithms interesting.
   </tr>
   <tr>
     <td> 1 </td>
-    <td> <a href="https://leetcode.com/problems/two-sum">Two Sum</a> </td>
-    <td> <a href="letCodeChallenges/two_sum.rs"> Rust </a> </td>
-    <td> <a href="letCodeChallenges/two_sum.py"> Python </a> </td>
+    <td> <a href="https://leetcode.com/problems/power-of-two">Power of Two</a> </td>
+    <td> <a href="letCodeChallenges/powerOfTwo.rs"> Rust </a> </td>
+    <td> <a href="letCodeChallenges/powerOfTwo.py"> Python </a> </td>
   </tr>
 </tbody>
 </table>
